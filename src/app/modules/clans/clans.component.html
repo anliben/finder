@@ -1,0 +1,23 @@
+<div
+    *ngFor="let clanData of clans"
+    class="bg-white rounded-lg shadow-lg overflow-hidden"
+>
+    <div class="px-6 py-4">
+      <h5 class="text-xl font-semibold mb-2">{{ clanData.name }}</h5>
+      <div class="grid grid-cols-1 gap-4">
+        <div *ngFor="let character of clanData.characters" class="bg-gray-100 rounded-lg p-4">
+          <h6 class="text-lg font-semibold">{{ character.name }}</h6>
+          <img *ngIf="character.images && character.images.length > 0" [src]="character.images[0]" alt="{{ character.name }}" class="w-full h-auto mt-2">
+          <p class="text-gray-700"><strong>Debut:</strong> {{ character?.debut?.appearsIn }}</p>
+          <p class="text-gray-700"><strong>Jutsu:</strong> {{ character?.jutsu?.join(', ') }}</p>
+          <p class="text-gray-700"><strong>Sex:</strong> {{ character.personal.sex }}</p>
+          <p class="text-gray-700"><strong>Affiliation:</strong> {{ character.personal.affiliation }}</p>
+          <p class="text-gray-700"><strong>Clan:</strong> {{ character.personal.clan }}</p>
+          <p class="text-gray-700"><strong>Rank:</strong> {{ character?.rank?.ninjaRank }}</p>
+          <p class="text-gray-700"><strong>Voice Actor (Japanese):</strong> {{ character?.voiceActors?.japanese }}</p>
+          <p class="text-gray-700"><strong>Voice Actor (English):</strong> {{ character?.voiceActors?.english }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<loading *ngIf="clans.length === 0" title="Clans" ></loading>

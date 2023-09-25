@@ -1,0 +1,26 @@
+<div
+    *ngFor="let team of teams"
+    class="bg-white rounded-lg shadow-lg overflow-hidden"
+>
+    <div class="px-6 py-4">
+      <h5 class="text-xl font-semibold mb-2">{{ team.name }}</h5>
+      <div class="grid grid-cols-1 gap-4">
+        <div *ngFor="let character of team.characters" class="bg-gray-100 rounded-lg p-4">
+          <h6 class="text-lg font-semibold">{{ character.name }}</h6>
+          <img *ngIf="character.images && character.images.length > 0" [src]="character.images[0]" alt="{{ character.name }}" class="w-full h-auto mt-2">
+          <p class="text-gray-700"><strong>Debut:</strong> {{ character?.debut?.appearsIn }}</p>
+          <p class="text-gray-700"><strong>Sex:</strong> {{ character.personal.sex }}</p>
+          <!-- <p class="text-gray-700"><strong>Height (Part I):</strong> {{ character?.personal?.height['Part I'] ?? 'nao consta' }}</p> -->
+          <p class="text-gray-700"><strong>Occupation:</strong> {{ character?.personal?.occupation }}</p>
+          <p class="text-gray-700"><strong>Affiliation:</strong> {{ character?.personal?.affiliation }}</p>
+          <p class="text-gray-700"><strong>Team:</strong> {{ character?.personal?.team }}</p>
+          <p class="text-gray-700"><strong>Partner:</strong> {{ character?.personal?.partner }}</p>
+          <p class="text-gray-700"><strong>Tools:</strong> {{ character?.tools?.join(', ') ?? 'nao consta' }}</p>
+          <p class="text-gray-700"><strong>Voice Actor (Japanese):</strong> {{ character?.voiceActors?.japanese }}</p>
+          <p class="text-gray-700"><strong>Voice Actor (English):</strong> {{ character?.voiceActors?.english }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<loading *ngIf="teams.length === 0" title="Teams" ></loading>
+  
